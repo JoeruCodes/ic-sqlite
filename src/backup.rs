@@ -1,6 +1,8 @@
 use std::io::{self, Read, Write};
 
-use crate::{utils::read, CONN};
+use rusqlite::Connection;
+
+use crate::utils::read;
 
 #[cfg(feature = "backup")]
 /// Streams a backup of the database as uncompressed data.
@@ -43,8 +45,7 @@ use crate::{utils::read, CONN};
 /// backup_stream.read_to_end(&mut buffer).expect("Failed to read backup data");
 /// // Use `buffer` as needed
 /// ```
-pub fn stream_db_backup() -> Result<impl Read, io::Error> {
-    let mut conn = CONN.lock().unwrap();
+pub fn stream_db_backup(conn: &mut Connection) -> Result<impl Read, io::Error> {
 
     // Begin a transaction to ensure consistency
     let tx = conn.transaction().unwrap();
@@ -95,10 +96,8 @@ pub fn stream_db_backup() -> Result<impl Read, io::Error> {
 /// let backup_data = db_backup_on_memory();
 /// // Use `backup_data` as needed.
 /// ```
-pub fn db_backup_on_memory() -> Vec<u8> {
-    use crate::CONN;
+pub fn db_backup_on_memory(conn: &mut Connection) -> Vec<u8> {
 
-    let mut conn = CONN.lock().unwrap();
     let mut output = Vec::new();
 
     let tx = conn.transaction().unwrap();
