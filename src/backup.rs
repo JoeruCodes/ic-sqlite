@@ -121,7 +121,7 @@ pub fn read_page_from_vfs(page_number: i64, page_size: usize) -> Result<Vec<u8>,
 
     let mut buffer = vec![0u8; page_size];
 
-    read(&mut buffer, offset as u64)?;
+    let _ = read(&mut buffer, offset as u64)?;
 
     Result::Ok(buffer)
 }
