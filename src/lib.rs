@@ -1,11 +1,11 @@
-mod vfs;
+pub mod vfs;
 
 use std::sync::{Mutex, Arc};
 use lazy_static::lazy_static;
-use rusqlite::{Connection, OpenFlags};
 use sqlite_vfs::register;
 use ic_cdk::api::stable::{stable64_size, stable64_grow, StableMemoryError};
 
+pub use rusqlite::*;
 lazy_static! {
     pub static ref CONN: Arc<Mutex<Connection>> = {
         register("vfs", vfs::PagesVfs::default(), true).unwrap();

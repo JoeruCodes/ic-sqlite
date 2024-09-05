@@ -1,5 +1,5 @@
 [package]
-name = "ic-sqlite"
+name = "ic-sqlite-features"
 description = "ICSQLite is a cloud SQLite database on Internet Computer and provides SDK for developers to use."
 version = "0.1.0"
 edition = "2021"
