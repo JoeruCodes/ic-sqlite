@@ -6,6 +6,8 @@ use sqlite_vfs::register;
 use ic_cdk::api::stable::{stable64_size, stable64_grow, StableMemoryError};
 
 pub use rusqlite::*;
+pub mod backup;
+pub mod utils;
 lazy_static! {
     pub static ref CONN: Arc<Mutex<Connection>> = {
         register("vfs", vfs::PagesVfs::default(), true).unwrap();

@@ -4,6 +4,7 @@ use std::time::{Duration, Instant};
 use ic_cdk::api::stable::{stable64_read, stable64_size, stable64_write};
 
 use sqlite_vfs::{LockKind, OpenKind, OpenOptions, Vfs};
+use crate::utils::read;
 use crate::{stable_capacity, stable_grow_bytes};
 
 const SQLITE_SIZE_IN_BYTES: u64 = 8; // 8 byte
@@ -81,9 +82,7 @@ impl sqlite_vfs::DatabaseHandle for Connection {
     }
 
     fn read_exact_at(&mut self, buf: &mut [u8], offset: u64) -> Result<(), io::Error> {
-        if stable64_size() > 0 {
-            stable64_read(offset + SQLITE_SIZE_IN_BYTES, buf);
-        }
+        read(buf, offset + SQLITE_SIZE_IN_BYTES);
         Ok(())
     }
 
