@@ -4,8 +4,8 @@ description = "ICSQLite is a cloud SQLite database on Internet Computer and prov
 version = "0.1.2"
 edition = "2021"
 license = "MIT OR Apache-2.0"
-authors = ["Froghub <f@froghub.io>"]
-repository = "https://github.com/froghub-io/ic-sqlite.git"
+authors = ["Froghub <f@froghub.io>", "JoeruCodes"]
+repository = "https://github.com/JoeruCodes/ic-sqlite"
 
 [dependencies]
 ic-cdk = "0.6.8"

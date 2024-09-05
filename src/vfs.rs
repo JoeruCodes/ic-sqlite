@@ -82,7 +82,7 @@ impl sqlite_vfs::DatabaseHandle for Connection {
     }
 
     fn read_exact_at(&mut self, buf: &mut [u8], offset: u64) -> Result<(), io::Error> {
-        read(buf, offset + SQLITE_SIZE_IN_BYTES);
+        let _ = read(buf, offset + SQLITE_SIZE_IN_BYTES);
         Ok(())
     }
 
