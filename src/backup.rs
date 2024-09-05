@@ -1,6 +1,6 @@
-use std::io::{self};
+use std::io::{self, Read, Write};
 
-use crate::utils::read;
+use crate::{utils::read, CONN};
 
 #[cfg(feature = "backup")]
 /// Streams a backup of the database as uncompressed data.
