@@ -4,7 +4,6 @@ use rusqlite::Connection;
 
 use crate::utils::read;
 
-#[cfg(feature = "backup")]
 /// Streams a backup of the database as uncompressed data.
 ///
 /// This function retrieves all pages of the database and accumulates them into a
@@ -69,7 +68,6 @@ pub fn stream_db_backup(conn: &mut Connection) -> Result<impl Read, io::Error> {
     Ok(io::Cursor::new(buffer))
 }
 
-#[cfg(feature = "backup")]
 /// Performs a backup of the database by loading it entirely into memory.
 ///
 /// This function retrieves all pages of the database and accumulates them into a
